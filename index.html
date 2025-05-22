@@ -24,8 +24,13 @@
       justify-content: space-between; padding: 1rem 2rem;
       border-bottom: 1px solid var(--color-secondary);
     }
-    .logo { font-family: var(--font-heading); font-size: 1.5rem; color: var(--color-primary); text-decoration: none; }
-    nav { display: flex; gap: var(--gap); }
+    .logo { display: inline-block; text-decoration: none; }
+    .logo img { max-width: 140px; height: auto; display: block; }
+    nav {
+      display: flex;
+      gap: var(--gap);
+      padding-left: 1rem;
+    }
     nav a { text-decoration: none; color: #555; font-weight: 600; }
     nav a:hover { color: var(--color-primary); }
     .menu-toggle { display:none; background:none; border:none; font-size:1.5rem; }
@@ -83,7 +88,9 @@
 </head>
 <body>
   <header>
-    <a href="#" class="logo">Oxford Portugal</a>
+    <a href="#" class="logo">
+      <img src="https://oxfordberlin.org/wp-content/uploads/2023/02/cropped-oxford-university-society-berlin-logo-min.jpg?w=695" alt="Oxford University Society Portugal Logo">
+    </a>
     <button class="menu-toggle" onclick="toggleNav()" aria-label="Toggle navigation">☰</button>
     <nav id="nav">
       <a href="#welcome">Welcome</a>
