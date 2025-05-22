@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Oxford University Society Portugal</title>
+  <style>
+    :root {
+      --primary: #002147; /* Oxford blue */
+      --accent: #b3cde0;
+      --font-serif: Georgia, serif;
+      --font-sans: "Helvetica Neue", sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      color: #333;
+    }
+
+    header {
+      background-color: var(--primary);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background: #f4f4f4;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+    }
+
+    nav a {
+      padding: 1rem;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      background: var(--accent);
+    }
+
+    section {
+      padding: 3rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    section h2 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    footer {
+      background: #f4f4f4;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    input, textarea, button {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background: var(--primary);
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #001933;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Oxford University Society Portugal</h1>
+    <p>Connecting Oxford alumni across Portugal</p>
+  </header>
+
+  <nav>
+    <a href="#welcome">Welcome</a>
+    <a href="#upcoming">Upcoming Events</a>
+    <a href="#past">Past Events</a>
+    <a href="#committee">Executive Committee</a>
+    <a href="#join">Join</a>
+    <a href="#contact">Contact</a>
+    <a href="#conduct">Code of Conduct</a>
+  </nav>
+
+  <section id="welcome">
+    <h2>Welcome Note</h2>
+    <p>Welcome to the official Oxford University Society Portugal. We are a vibrant community of Oxford alumni living across Portugal. Our goal is to foster meaningful connections, celebrate shared experiences, and promote intellectual and cultural exchange.</p>
+  </section>
+
+  <section id="upcoming">
+    <h2>Upcoming Events</h2>
+    <ul>
+      <li><strong>Summer Gathering – Lisbon</strong>: June 15, 2025</li>
+      <li><strong>Oxford Talk Night – Porto</strong>: July 12, 2025</li>
+    </ul>
+  </section>
+
+  <section id="past">
+    <h2>Past Events</h2>
+    <ul>
+      <li>New Year Dinner – January 2025, Lisbon</li>
+      <li>Wine Tasting with Oxford Alumni – October 2024, Douro Valley</li>
+    </ul>
+  </section>
+
+  <section id="committee">
+    <h2>Executive Committee</h2>
+    <ul>
+      <li><strong>President:</strong> Ana Martins</li>
+      <li><strong>Vice President:</strong> João Silva</li>
+      <li><strong>Events Coordinator:</strong> Maria Costa</li>
+      <li><strong>Secretary:</strong> Pedro Lopes</li>
+    </ul>
+  </section>
+
+  <section id="join">
+    <h2>Join the Society</h2>
+    <p>Stay informed about events and news. Join our mailing list:</p>
+
+    <form action="https://your-mailchimp-url" method="POST" target="_blank">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="EMAIL" required>
+      <button type="submit">Subscribe</button>
+    </form>
+
+    <p>Or email us at <a href="mailto:oxfordportugal@gmail.com">oxfordportugal@gmail.com</a></p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>If you have questions, ideas, or want to get involved, please get in touch:</p>
+    <p>Email: <a href="mailto:oxfordportugal@gmail.com">oxfordportugal@gmail.com</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/groups/12345678/">Oxford Society Portugal</a></p>
+  </section>
+
+  <section id="conduct">
+    <h2>Code of Conduct</h2>
+    <p>We are committed to providing a welcoming and respectful environment for all members. Discrimination, harassment, or disrespectful behaviour of any kind will not be tolerated. Please reach out to the committee if you witness or experience anything concerning.</p>
+  </section>
+
+  <footer>
+    &copy; 2025 Oxford University Society Portugal
+  </footer>
+
+</body>
+</html>
