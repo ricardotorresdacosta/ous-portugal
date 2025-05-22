@@ -1,195 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Oxford University Society Portugal</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,700|PT+Serif:400,700&display=swap">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #002147; /* Oxford blue */
-      --accent: #b3cde0;
-      --font-serif: 'PT Serif', Georgia, serif;
-      --font-sans: 'PT Sans', Arial, sans-serif;
+      --color-primary: #002147;
+      --color-secondary: #f4f4f4;
+      --color-accent: #B3CDE0;
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Montserrat', sans-serif;
+      --gap: 1.5rem;
     }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: var(--font-sans);
-      color: #2C2C2C;
-      background: #fff;
-    }
-
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body { font-family: var(--font-body); color: #333; }
     header {
-      background: var(--primary);
-      color: white;
-      padding: 2rem 1rem;
-      text-align: center;
-      background-image: url('https://www.ox.ac.uk/sites/files/oxford/field/field_image_highlight/si_top_oxfordskyline.jpg');
-      background-size: cover;
-      background-position: center;
+      position: sticky; top:0; z-index:100;
+      background: #fff; display: flex; align-items: center;
+      justify-content: space-between; padding: 1rem 2rem;
+      border-bottom: 1px solid var(--color-secondary);
     }
+    .logo { font-family: var(--font-heading); font-size: 1.5rem; color: var(--color-primary); text-decoration: none; }
+    nav { display: flex; gap: var(--gap); }
+    nav a { text-decoration: none; color: #555; font-weight: 600; }
+    nav a:hover { color: var(--color-primary); }
+    .menu-toggle { display:none; background:none; border:none; font-size:1.5rem; }
 
-    header h1 {
-      font-family: var(--font-serif);
-      font-size: 2.8rem;
-      margin: 0.5rem 0;
+    .hero {
+      background: var(--color-primary); color: #fff;
+      text-align: center; padding: 4rem 2rem;
     }
-
-    header img.logo {
-      max-width: 120px;
-      display: block;
-      margin: 0 auto 1rem;
+    .hero h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.25rem; margin-bottom: 2rem; }
+    .btn { background: var(--color-accent); color: #fff;
+      padding: 0.75rem 1.5rem; text-decoration: none;
+      font-weight: 600; border-radius: 4px;
     }
+    .btn:hover { background: var(--color-primary); }
 
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      background: #f4f4f4;
-      border-top: 1px solid #ddd;
-      border-bottom: 1px solid #ddd;
+    section { padding: 3rem 2rem; max-width: 1000px; margin: auto; }
+    .section-title { font-family: var(--font-heading); font-size: 2rem; text-align: center; margin-bottom: 2rem; color: var(--color-primary); }
+
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: var(--gap); }
+    .card { background: #fff; border: 1px solid var(--color-secondary);
+      padding: 1.5rem; border-radius: 6px; transition: transform .2s;
     }
+    .card:hover { transform: translateY(-4px); }
+    .card h3 { font-family: var(--font-heading); margin-bottom: 0.5rem; color: var(--color-primary); }
+    .card p { font-size: 0.95rem; }
 
-    nav a {
-      padding: 1rem;
-      text-decoration: none;
-      color: var(--primary);
-      font-weight: bold;
-      text-transform: uppercase;
-      font-family: var(--font-sans);
+    form { display: grid; gap: 1rem; max-width: 400px; margin: auto; }
+    input[type="email"] { padding: 0.75rem; width: 100%; border:1px solid #ccc; border-radius:4px; }
+    input[type="submit"] { background: var(--color-primary); color:#fff; border:none;
+      padding:0.75rem; border-radius:4px; font-weight:600; cursor:pointer;
     }
+    input[type="submit"]:hover { background: #001933; }
 
-    nav a:hover {
-      background: var(--accent);
-    }
+    footer { background: var(--color-secondary); text-align: center; padding: 2rem; font-size:0.9rem; color: #555; }
 
-    section {
-      padding: 3rem 1rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    section h2 {
-      font-family: var(--font-serif);
-      font-size: 2rem;
-      color: var(--primary);
-      margin-bottom: 1rem;
-    }
-
-    ul {
-      padding-left: 1.2rem;
-    }
-
-    footer {
-      background: #f4f4f4;
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: #666;
-    }
-
-    input, button {
-      width: 100%;
-      padding: 0.6rem;
-      margin-top: 0.5rem;
-      margin-bottom: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-
-    button {
-      background: var(--primary);
-      color: white;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #001933;
+    @media (max-width: 768px) {
+      nav { display: none; position: absolute; top:100%; left:0; right:0;
+        background: #fff; flex-direction: column; }
+      nav.active { display: flex; }
+      .menu-toggle { display: block; }
     }
   </style>
 </head>
 <body>
-
   <header>
-    <img class="logo" src="https://oxfordberlin.org/wp-content/uploads/2023/02/cropped-oxford-university-society-berlin-logo-min.jpg?w=695" alt="Oxford Logo" />
-    <h1>Oxford University Society Portugal</h1>
-    <p>Connecting Oxford alumni across Portugal</p>
+    <a href="#" class="logo">Oxford Portugal</a>
+    <button class="menu-toggle" onclick="toggleNav()" aria-label="Toggle navigation">☰</button>
+    <nav id="nav">
+      <a href="#welcome">Welcome</a>
+      <a href="#upcoming">Upcoming Events</a>
+      <a href="#past">Past Events</a>
+      <a href="#committee">Committee</a>
+      <a href="#join">Join</a>
+      <a href="#contact">Contact</a>
+      <a href="#conduct">Code of Conduct</a>
+    </nav>
   </header>
 
-  <nav>
-    <a href="#welcome">Welcome</a>
-    <a href="#upcoming">Upcoming Events</a>
-    <a href="#past">Past Events</a>
-    <a href="#committee">Executive Committee</a>
-    <a href="#join">Join</a>
-    <a href="#contact">Contact</a>
-    <a href="#conduct">Code of Conduct</a>
-  </nav>
-
-  <section id="welcome">
-    <h2>Welcome Note</h2>
-    <p>Welcome to the Oxford University Society Portugal. We connect alumni, foster friendships, and promote cultural exchange throughout the country.</p>
+  <section class="hero" id="welcome">
+    <h1>Oxford University Society Portugal</h1>
+    <p>Connecting Oxford alumni across Portugal to share ideas and build community.</p>
+    <a href="#join" class="btn">Join Us</a>
   </section>
 
   <section id="upcoming">
-    <h2>Upcoming Events</h2>
-    <ul>
-      <li><strong>Summer Gathering</strong> – Lisbon, June 15, 2025</li>
-      <li><strong>Talk Night</strong> – Porto, July 12, 2025</li>
-    </ul>
+    <h2 class="section-title">Upcoming Events</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Summer Gathering</h3>
+        <p><strong>Lisbon</strong><br>June 15, 2025</p>
+      </div>
+      <div class="card">
+        <h3>Talk Night</h3>
+        <p><strong>Porto</strong><br>July 12, 2025</p>
+      </div>
+    </div>
   </section>
 
   <section id="past">
-    <h2>Past Events</h2>
-    <ul>
-      <li>New Year Dinner – Lisbon, January 2025</li>
-      <li>Wine Tasting – Douro Valley, October 2024</li>
-    </ul>
+    <h2 class="section-title">Past Events</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>New Year Dinner</h3>
+        <p>Lisbon, January 2025</p>
+      </div>
+      <div class="card">
+        <h3>Wine Tasting</h3>
+        <p>Douro Valley, October 2024</p>
+      </div>
+    </div>
   </section>
 
   <section id="committee">
-    <h2>Executive Committee</h2>
-    <ul>
-      <li><strong>President:</strong> Ana Martins</li>
-      <li><strong>Vice President:</strong> João Silva</li>
-      <li><strong>Events:</strong> Maria Costa</li>
-      <li><strong>Secretary:</strong> Pedro Lopes</li>
-    </ul>
+    <h2 class="section-title">Executive Committee</h2>
+    <div class="card-grid">
+      <div class="card"><h3>Ana Martins</h3><p>President</p></div>
+      <div class="card"><h3>João Silva</h3><p>Vice President</p></div>
+      <div class="card"><h3>Maria Costa</h3><p>Events Coordinator</p></div>
+      <div class="card"><h3>Pedro Lopes</h3><p>Secretary</p></div>
+    </div>
   </section>
 
   <section id="join">
-    <h2>Join</h2>
-    <p>Subscribe to our newsletter or contact us by email:</p>
+    <h2 class="section-title">Join Us</h2>
     <form action="https://your-mailchimp-url" method="POST" target="_blank">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="EMAIL" required>
-      <button type="submit">Subscribe</button>
+      <input type="email" name="EMAIL" placeholder="Your email address" required>
+      <input type="submit" value="Subscribe">
     </form>
-    <p>Or email us at <a href="mailto:oxfordportugal@gmail.com">oxfordportugal@gmail.com</a></p>
+    <p style="text-align:center; margin-top:1rem;">Or email <a href="mailto:oxfordportugal@gmail.com">oxfordportugal@gmail.com</a></p>
   </section>
 
   <section id="contact">
-    <h2>Contact</h2>
-    <p>We welcome your questions, feedback, and ideas.</p>
-    <p>Email: <a href="mailto:oxfordportugal@gmail.com">oxfordportugal@gmail.com</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/groups/12345678/">Oxford Society Portugal</a></p>
+    <h2 class="section-title">Contact</h2>
+    <p style="text-align:center; max-width:600px; margin:auto;">Questions or ideas? Reach out at <a href="mailto:oxfordportugal@gmail.com">oxfordportugal@gmail.com</a> or connect on <a href="https://www.linkedin.com/groups/12345678/">LinkedIn</a>.</p>
   </section>
 
   <section id="conduct">
-    <h2>Code of Conduct</h2>
-    <p>We promote a respectful and inclusive environment. Discrimination or harassment of any kind is not tolerated. Contact the committee with any concerns.</p>
+    <h2 class="section-title">Code of Conduct</h2>
+    <p style="max-width:600px; margin:1rem auto; text-align:center;">We are committed to a respectful and inclusive environment. Harassment or discrimination will not be tolerated. Please contact the committee with any concerns.</p>
   </section>
 
   <footer>
     &copy; 2025 Oxford University Society Portugal
   </footer>
 
+  <script>
+    function toggleNav() {
+      document.getElementById('nav').classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
