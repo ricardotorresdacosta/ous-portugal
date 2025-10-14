@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Oxford University Society Portugal</title>
-  <link rel="icon" href="https://www.oxfordsociety.de/wp-content/uploads/2021/02/OxfordAlumniSqSocialMediaBadge-150x150.jpg" sizes="32x32" />
-  <link rel="icon" href="https://www.oxfordsociety.de/wp-content/uploads/2021/02/OxfordAlumniSqSocialMediaBadge-300x300.jpg" sizes="192x192" />
-  <link rel="apple-touch-icon" href="https://www.oxfordsociety.de/wp-content/uploads/2021/02/OxfordAlumniSqSocialMediaBadge-300x300.jpg" />
+  <link rel="icon"
+    href="https://www.oxfordsociety.de/wp-content/uploads/2021/02/OxfordAlumniSqSocialMediaBadge-150x150.jpg"
+    sizes="32x32" />
+  <link rel="icon"
+    href="https://www.oxfordsociety.de/wp-content/uploads/2021/02/OxfordAlumniSqSocialMediaBadge-300x300.jpg"
+    sizes="192x192" />
+  <link rel="apple-touch-icon"
+    href="https://www.oxfordsociety.de/wp-content/uploads/2021/02/OxfordAlumniSqSocialMediaBadge-300x300.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --color-primary: #002147;
@@ -19,55 +27,171 @@
       --font-body: 'Montserrat', sans-serif;
       --gap: 1.5rem;
     }
-    /* Center all section titles and card headings */
-    .section-title, .card h3 {
-      text-align: center;
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    * { box-sizing: border-box; margin:0; padding:0; }
-    body { font-family: var(--font-body); color: #333; }
+
+    body {
+      font-family: var(--font-body);
+      color: #333;
+    }
+
     header {
-      position: sticky; top:0; z-index:100;
-      background: #fff; display: flex; align-items: center;
-      justify-content: space-between; padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
       border-bottom: 1px solid var(--color-secondary);
     }
-    .logo { display: inline-block; text-decoration: none; }
-    .logo img { max-width: 140px; height: auto; display: block; }
+
+    .logo img {
+      max-width: 140px;
+      height: auto;
+      display: block;
+    }
+
     nav {
       display: flex;
       gap: var(--gap);
       padding-left: 1rem;
     }
-    nav a { text-decoration: none; color: #555; font-weight: 600; }
-    nav a:hover { color: var(--color-primary); }
-    .menu-toggle { display:none; background:none; border:none; font-size:1.5rem; }
+
+    nav a {
+      text-decoration: none;
+      color: #555;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: var(--color-primary);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+    }
 
     .hero {
-      background: var(--color-primary); color: #fff;
-      text-align: center; padding: 4rem 2rem;
+      background: var(--color-primary);
+      color: #fff;
+      text-align: center;
+      padding: 4rem 2rem;
     }
-    .hero h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 1rem; }
-    .hero p { font-size: 1.25rem; margin-bottom: 2rem; }
-    .btn { background: var(--color-accent); color: #fff;
-      padding: 0.75rem 1.5rem; text-decoration: none;
-      font-weight: 600; border-radius: 4px;
+
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
     }
-    .btn:hover { background: var(--color-primary); }
+
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      background: var(--color-accent);
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 4px;
+    }
+
+    .btn:hover {
+      background: var(--color-primary);
+    }
 
     section {
-      padding: 3rem 2rem; max-width: 1000px; margin: auto;
+      padding: 3rem 2rem;
+      max-width: 1000px;
+      margin: auto;
       scroll-margin-top: 100px;
-    } padding: 3rem 2rem; max-width: 1000px; margin: auto; }
-    .section-title { font-family: var(--font-heading); font-size: 2rem; text-align: center; margin-bottom: 2rem; color: var(--color-primary); }
+    }
 
-    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: var(--gap); }
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--color-primary);
+    }
+
+    /* === TEXT BLOCK STYLE (Welcome + About) === */
+    .text-block {
+      max-width: 800px;
+      margin: auto;
+      text-align: justify;
+      line-height: 1.6;
+    }
+
+    /* === EVENT GRIDS === */
+    #upcoming .card-grid,
+    #past .card-grid {
+      display: grid;
+      gap: var(--gap);
+      justify-content: start;
+    }
+
+    @media (min-width: 769px) {
+
+      #upcoming .card-grid,
+      #past .card-grid {
+        grid-template-columns: repeat(2, minmax(300px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+
+      #upcoming .card-grid,
+      #past .card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* === COMMITTEE GRID === */
+    #committee .card-grid {
+      display: grid;
+      gap: var(--gap);
+      justify-content: start;
+    }
+
+    @media (min-width: 1024px) {
+      #committee .card-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (max-width: 1023px) and (min-width: 601px) {
+      #committee .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      #committee .card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .card {
       background: #fff;
       border: 1px solid var(--color-secondary);
       padding: 1.5rem;
       border-radius: 6px;
       transition: transform .2s;
+      text-align: center;
     }
+
     .card img {
       width: 100%;
       height: 150px;
@@ -75,40 +199,94 @@
       border-radius: 4px;
       margin-bottom: 1rem;
     }
-    .card:hover { transform: translateY(-4px); }
-    .card h3 { font-family: var(--font-heading); margin-bottom: 0.5rem; color: var(--color-primary); }
-    .card p { font-size: 0.95rem; }
 
-    form { display: grid; gap: 1rem; max-width: 400px; margin: auto; }
-    input[type="email"] { padding: 0.75rem; width: 100%; border:1px solid #ccc; border-radius:4px; }
-    input[type="submit"] { background: var(--color-primary); color:#fff; border:none;
-      padding:0.75rem; border-radius:4px; font-weight:600; cursor:pointer;
+    .card:hover {
+      transform: translateY(-4px);
     }
-    input[type="submit"]:hover { background: #001933; }
 
-    footer { background: var(--color-secondary); text-align: center; padding: 2rem; font-size:0.9rem; color: #555; }
+    .card h3 {
+      font-family: var(--font-heading);
+      margin-bottom: 0.5rem;
+      color: var(--color-primary);
+    }
+
+    .card p {
+      font-size: 0.95rem;
+    }
+
+    /* === CONTACT FORM === */
+    form {
+      display: grid;
+      gap: 1rem;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    input,
+    textarea {
+      padding: 0.75rem;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: var(--font-body);
+    }
+
+    input[type="submit"] {
+      background: var(--color-primary);
+      color: #fff;
+      border: none;
+      padding: 0.75rem;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background: #001933;
+    }
+
+    footer {
+      background: var(--color-secondary);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
 
     @media (max-width: 768px) {
-      nav { display: none; position: absolute; top:100%; left:0; right:0;
-        background: #fff; flex-direction: column; }
-      nav.active { display: flex; }
-      .menu-toggle { display: block; }
+      nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        flex-direction: column;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
     }
   </style>
 </head>
+
 <body>
   <header>
     <a href="#" class="logo">
-      <img src="https://oxfordberlin.org/wp-content/uploads/2023/02/cropped-oxford-university-society-berlin-logo-min.jpg?w=695" alt="Oxford University Society Portugal Logo">
+      <img src="./Alumni-Network-Secondary-Portugal.png" alt="Oxford University Society Portugal Logo">
     </a>
     <button class="menu-toggle" onclick="toggleNav()" aria-label="Toggle navigation">☰</button>
     <nav id="nav">
-      <a href="#welcome">Welcome</a>
+      <a href="#about">About Us</a>
       <a href="#upcoming">Upcoming Events</a>
       <a href="#past">Past Events</a>
       <a href="#committee">Committee</a>
-      <a href="#join">Join</a>
-      <a href="#contact">Contact</a>
+      <a href="#contact-form">Contact</a>
       <a href="#conduct">Code of Conduct</a>
     </nav>
   </header>
@@ -116,14 +294,31 @@
   <section class="hero" id="welcome">
     <h1>Oxford University Society Portugal</h1>
     <p>Connecting Oxford alumni across Portugal to share ideas and build community.</p>
-    <a href="#join" class="btn">Join Us</a>
+    <a href="#contact-form" class="btn">Get in Touch</a>
   </section>
 
-  <section id="welcome-note">
-    <h2 class="section-title">Welcome</h2>
-    <p style="max-width:800px; margin:1rem auto; text-align:justify;">
-      Oxford University Society Portugal is an autonomous group for alumni of the University living in Portugal and operates independently of the University. Responsibility for this website and any and all activities associated with it are the full responsibility of the group and its organising committee. This website is not maintained, monitored, or in any way under the control of the University of Oxford.
-    </p>
+  <section id="about">
+    <h2 class="section-title">About Us</h2>
+    <div class="text-block">
+      <p>Welcome to the Oxford Society of Portugal — the official Alumni network of the University of Oxford in
+        Portugal, bringing together graduates from across generations and disciplines, united by our shared connection
+        to Oxford and a desire to stay intellectually engaged, socially connected, and culturally enriched.</p><br>
+      <p>The Society is run by an executive committee made up of volunteer members who are passionate about building an
+        active alumni community in Portugal.</p><br>
+      <p>The committee’s goal is to foster meaningful connections through events, networking opportunities, and
+        collaborations that reflect both the academic richness of Oxford and the unique character of Portugal.</p><br>
+      <p>Rooted in tradition, yet forward-looking in outlook, the Oxford Society of Portugal invites all alumni to
+        remain part of an evolving Oxford story — right here in Portugal.</p><br>
+      <p>If you would like to join the Society (no membership fee applies) and be included in our mailing list, please
+        get in touch with us using the form below.</p><br>
+      <p>One of our plans is to start a regular informal monthly evening gathering in Lisbon, joining up with alumni
+        groups from other leading UK and US universities.</p><br>
+      <p>We will be starting official OUS Portugal groups on Instagram, LinkedIn and Facebook.</p><br>
+      <p>Currently our events take place in Lisbon but as we grow and have volunteers in Porto and elsewhere to organise
+        events, we will truly be the Oxford Society of Portugal!</p><br>
+      <p><strong>We look forward to meeting you soon.</strong></p><br>
+      <p><em>Floreat Oxonia!</em></p>
+    </div>
   </section>
 
   <section id="upcoming">
@@ -131,13 +326,13 @@
     <div class="card-grid">
       <div class="card">
         <img src="https://picsum.photos/400/300?random=1" alt="Summer Gathering">
-        <h3>Summer Gathering</h3>
-        <p><strong>Lisbon</strong><br>June 15, 2025</p>
+        <h3>Winter Drinks</h3>
+        <p><strong>Porto</strong><br>Maus Hábitos<br>Thursday 27th November, 2025</p>
       </div>
       <div class="card">
         <img src="https://picsum.photos/400/300?random=2" alt="Talk Night">
-        <h3>Talk Night</h3>
-        <p><strong>Porto</strong><br>July 12, 2025</p>
+        <h3>Christmas Party</h3>
+        <p><strong>Lisbon</strong><br>Thursday 4th December, 2025</p>
       </div>
     </div>
   </section>
@@ -147,13 +342,8 @@
     <div class="card-grid">
       <div class="card">
         <img src="https://picsum.photos/400/300?random=3" alt="New Year Dinner">
-        <h3>New Year Dinner</h3>
-        <p>Lisbon, January 2025</p>
-      </div>
-      <div class="card">
-        <img src="https://picsum.photos/400/300?random=4" alt="Wine Tasting">
-        <h3>Wine Tasting</h3>
-        <p>Douro Valley, October 2024</p>
+        <h3>OUS Portugal Informal Drinks</h3>
+        <p><strong>Lisbon</strong><br>Altis Belém<br>Friday 9th May, 2025</p>
       </div>
     </div>
   </section>
@@ -184,23 +374,34 @@
     </div>
   </section>
 
-  <section id="join">
-    <h2 class="section-title">Join Us</h2>
-    <form action="https://your-mailchimp-url" method="POST" target="_blank">
-      <input type="email" name="EMAIL" placeholder="Your email address" required>
-      <input type="submit" value="Subscribe">
+  <section id="contact-form">
+    <h2 class="section-title">Contact Us</h2>
+    <form id="contact-us-form" action="https://formspree.io/f/xpwykapz" method="POST" novalidate>
+      <input type="text" name="name" placeholder="Your name">
+      <input type="email" name="email" id="email" placeholder="Your email address" required
+        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+        title="Please enter a valid email address (e.g. name@example.com)">
+      <input type="tel" name="phone" placeholder="Your phone number (optional)">
+      <textarea name="message" rows="4" placeholder="Your message"></textarea>
+      <input type="submit" value="Send Message">
+      <p id="email-error" style="color:red; text-align:center; display:none; font-size:0.9rem;">
+        Please enter a valid email address.
+      </p>
+      <p id="form-success" style="color:green; text-align:center; display:none; font-size:0.9rem;">
+        ✅ Thank you for your message! We’ll get back to you soon.
+      </p>
+      <p id="form-error" style="color:red; text-align:center; display:none; font-size:0.9rem;">
+        ❌ Something went wrong. Please try again later.
+      </p>
     </form>
-    <p style="max-width:400px; margin:1rem auto; text-align:justify;">Or email <a href="mailto:oxfordportugal@gmail.com">oxfordportugal@gmail.com</a></p>
-  </section>
-
-  <section id="contact">
-    <h2 class="section-title">Contact</h2>
-    <p style="text-align:justify; max-width:600px; margin:auto;">Questions or ideas? Reach out at <a href="mailto:oxfordportugal@gmail.com">oxfordportugal@gmail.com</a> or connect on <a href="https://www.linkedin.com/groups/12345678/">LinkedIn</a>.</p>
   </section>
 
   <section id="conduct">
     <h2 class="section-title">Code of Conduct</h2>
-    <p style="max-width:600px; margin:1rem auto; text-align:justify;">We are committed to a respectful and inclusive environment. Harassment or discrimination will not be tolerated. Please contact the committee with any concerns.</p>
+    <p class="text-block">
+      We are committed to a respectful and inclusive environment. Harassment or discrimination will not be tolerated.
+      Please contact the committee with any concerns.
+    </p>
   </section>
 
   <footer>
@@ -211,6 +412,47 @@
     function toggleNav() {
       document.getElementById('nav').classList.toggle('active');
     }
+
+    const form = document.getElementById('contact-us-form');
+    const emailField = document.getElementById('email');
+    const emailError = document.getElementById('email-error');
+    const formSuccess = document.getElementById('form-success');
+    const formError = document.getElementById('form-error');
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      formSuccess.style.display = 'none';
+      formError.style.display = 'none';
+      emailError.style.display = 'none';
+
+      if (!emailRegex.test(emailField.value.trim())) {
+        emailError.style.display = 'block';
+        emailField.focus();
+        return;
+      }
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          form.reset();
+          formSuccess.style.display = 'block';
+          setTimeout(() => formSuccess.style.display = 'none', 5000);
+        } else {
+          formError.style.display = 'block';
+        }
+      } catch (error) {
+        formError.style.display = 'block';
+      }
+    });
   </script>
 </body>
+
 </html>
