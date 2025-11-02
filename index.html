@@ -15,6 +15,8 @@
     href="https://www.oxfordsociety.de/wp-content/uploads/2021/02/OxfordAlumniSqSocialMediaBadge-300x300.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Preload the hero image (webp preferred) to improve LCP -->
+  <link rel="preload" as="image" imagesrcset="./OUImages_102125_1920.webp 1920w, ./OUImages_102125_1920.jpg 1920w" imagesizes="100vw">
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap"
     rel="stylesheet">
@@ -90,14 +92,32 @@
       margin-left: calc(50% - 50vw);
       margin-right: calc(50% - 50vw);
       overflow: visible;
+      aspect-ratio: 3 / 1; /* ensure the container keeps a stable ratio */
     }
 
     /* The actual image element so the full image is visible (no cropping)
        Object-fit is not needed since we want the full image shown at its natural aspect ratio */
     .hero-bg {
-      display: block;
+      /* position the image to fully cover the hero container and preserve aspect ratio */
+      position: absolute;
+      inset: 0;
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover; /* prevent stretching, crop if necessary */
+      display: block;
+    }
+
+    /* blur-up placeholder state */
+    .hero-bg.blur {
+      filter: blur(20px);
+      transform: scale(1.02);
+      transition: filter 600ms ease, transform 600ms ease;
+      will-change: filter, transform;
+    }
+
+    .hero-bg.loaded {
+      filter: none;
+      transform: none;
     }
 
     /* dark overlay for text readability */
@@ -335,7 +355,19 @@
   </header>
 
   <section class="hero" id="welcome">
-    <img class="hero-bg" src="./OUImages_102125_HighRes.jpg" alt="Oxford University Society Portugal">
+    <picture>
+      <source type="image/webp"
+              srcset="./OUImages_102125_480.webp 480w, ./OUImages_102125_800.webp 800w, ./OUImages_102125_1200.webp 1200w, ./OUImages_102125_1920.webp 1920w, ./OUImages_102125_2560.webp 2560w"
+              sizes="100vw">
+      <source type="image/jpeg"
+              srcset="./OUImages_102125_480.jpg 480w, ./OUImages_102125_800.jpg 800w, ./OUImages_102125_1200.jpg 1200w, ./OUImages_102125_1920.jpg 1920w, ./OUImages_102125_2560.jpg 2560w"
+              sizes="100vw">
+      <!-- Very small blurred inline placeholder as initial src (LQIP) -->
+      <img class="hero-bg blur"
+           src="data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAAAwBACdASoUAA0APpE4mEeloyKhMAgAsBIJZACdMoADTpA+pViFEzOmXwAA99OfIn+6ErUmGapKXS/AnDVlxvOOGt3IgdBCgNYo4dizJE0NgQYQMD4eLiFt2mGYI6+z5envkQAA"
+           alt="Oxford University Society Portugal"
+           width="1920" height="640" loading="eager">
+    </picture>
     <div class="hero-inner">
       <h1>Oxford University Society Portugal</h1>
       <p>Connecting Oxford alumni across Portugal to share ideas and build community.</p>
@@ -462,45 +494,30 @@
       document.getElementById('nav').classList.toggle('active');
     }
 
-    const form = document.getElementById('contact-us-form');
-    const emailField = document.getElementById('email');
-    const emailError = document.getElementById('email-error');
-    const formSuccess = document.getElementById('form-success');
-    const formError = document.getElementById('form-error');
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    // Remove blur-up once the hi-res image has loaded/decoded
+    (function () {
+      const heroImg = document.querySelector('.hero .hero-bg');
+      if (!heroImg) return;
 
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
-      formSuccess.style.display = 'none';
-      formError.style.display = 'none';
-      emailError.style.display = 'none';
-
-      if (!emailRegex.test(emailField.value.trim())) {
-        emailError.style.display = 'block';
-        emailField.focus();
-        return;
+      function markLoaded() {
+        // add loaded class to remove blur/scale
+        heroImg.classList.add('loaded');
       }
 
-      const formData = new FormData(form);
-
-      try {
-        const response = await fetch(form.action, {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
+      if (heroImg.complete && heroImg.naturalWidth > 0) {
+        // already loaded (cache) — mark as loaded
+        markLoaded();
+      } else {
+        heroImg.addEventListener('load', () => {
+          // attempt decode for smoother swap; ignore failures
+          if (heroImg.decode) {
+            heroImg.decode().catch(() => {}).finally(markLoaded);
+          } else {
+            markLoaded();
+          }
         });
-
-        if (response.ok) {
-          form.reset();
-          formSuccess.style.display = 'block';
-          setTimeout(() => formSuccess.style.display = 'none', 5000);
-        } else {
-          formError.style.display = 'block';
-        }
-      } catch (error) {
-        formError.style.display = 'block';
       }
-    });
+    })();
 
     // set dynamic year in the footer
     const yearEl = document.getElementById('year');
