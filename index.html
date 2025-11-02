@@ -42,7 +42,8 @@
     }
 
     header {
-      position: static;
+      position: relative; /* ensure z-index applies */
+      z-index: 60; /* keep header and controls above other content */
       background: #fff;
       display: flex;
       align-items: center;
@@ -78,6 +79,9 @@
       background: none;
       border: none;
       font-size: 1.5rem;
+      position: relative;
+      z-index: 70;
+      cursor: pointer;
     }
 
     .hero {
@@ -319,12 +323,15 @@
     @media (max-width: 768px) {
       nav {
         display: none;
-        position: absolute;
-        top: 100%;
+        position: fixed; /* keep the menu on top when opened */
+        top: 56px; /* just below the header (approx) */
         left: 0;
         right: 0;
         background: #fff;
         flex-direction: column;
+        max-height: calc(100vh - 56px);
+        overflow: auto;
+        z-index: 65; /* above page content */
       }
 
       nav.active {
@@ -333,6 +340,10 @@
 
       .menu-toggle {
         display: block;
+        position: fixed; /* ensure always reachable */
+        top: 12px;
+        right: 16px;
+        z-index: 9999;
       }
     }
 
@@ -348,9 +359,9 @@
 
       .hero-inner {
         padding: 1rem; /* reduce internal padding */
-        align-items: flex-start; /* left-align for narrow viewports */
+        align-items: center; /* center content horizontally like desktop */
         justify-content: center; /* keep content vertically centered if possible */
-        text-align: left;
+        text-align: center; /* center text so heading/btn are centered */
       }
 
       .hero h1 {
@@ -381,7 +392,7 @@
     <a href="#" class="logo">
       <img src="./Alumni-Network-Primary-Portugal.png" alt="Oxford University Society Portugal Logo">
     </a>
-    <button class="menu-toggle" onclick="toggleNav()" aria-label="Toggle navigation">☰</button>
+    <button class="menu-toggle" aria-label="Toggle navigation" aria-controls="nav" aria-expanded="false">☰</button>
     <nav id="nav">
       <a href="#about">About Us</a>
       <a href="#upcoming">Upcoming Events</a>
@@ -528,9 +539,41 @@
   </footer>
 
   <script>
+    // Robust mobile nav toggle: manage aria state and handle pointer/touch/click events
     function toggleNav() {
-      document.getElementById('nav').classList.toggle('active');
+      const navEl = document.getElementById('nav');
+      const btn = document.querySelector('.menu-toggle');
+      if (!navEl || !btn) return;
+      const isActive = navEl.classList.toggle('active');
+      btn.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+      // when opening, prevent body from scrolling behind the menu
+      if (isActive) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
     }
+
+    (function () {
+      const btn = document.querySelector('.menu-toggle');
+      const navEl = document.getElementById('nav');
+      if (!btn || !navEl) return;
+
+      // Primary click handler
+      btn.addEventListener('click', toggleNav);
+      // Also handle pointer/touch events for devices where click may be delayed
+      btn.addEventListener('pointerdown', (e) => { try { e.preventDefault(); toggleNav(); } catch (err) { console.error(err); } });
+      btn.addEventListener('touchstart', (e) => { try { e.preventDefault(); toggleNav(); } catch (err) { console.error(err); } }, { passive: false });
+
+      // Close menu when clicking outside the nav on mobile
+      document.addEventListener('click', (e) => {
+        if (!navEl.classList.contains('active')) return;
+        if (e.target === btn || navEl.contains(e.target)) return;
+        navEl.classList.remove('active');
+        btn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    })();
 
     // Remove blur-up once the hi-res image has loaded/decoded
     (function () {
