@@ -40,9 +40,7 @@
     }
 
     header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      position: static;
       background: #fff;
       display: flex;
       align-items: center;
@@ -81,10 +79,51 @@
     }
 
     .hero {
-      background: var(--color-primary);
+      position: relative;
       color: #fff;
       text-align: center;
-      padding: 4rem 2rem;
+      padding: 0; /* height provided by the image */
+      /* make the hero full-bleed */
+      max-width: none;
+      width: 100%;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      overflow: visible;
+    }
+
+    /* The actual image element so the full image is visible (no cropping)
+       Object-fit is not needed since we want the full image shown at its natural aspect ratio */
+    .hero-bg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* dark overlay for text readability */
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35));
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      /* place content over the image */
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem; /* internal padding for content */
     }
 
     .hero h1 {
@@ -99,7 +138,7 @@
     }
 
     .btn {
-      background: var(--color-accent);
+      background: var(--color-primary);
       color: #fff;
       padding: 0.75rem 1.5rem;
       text-decoration: none;
@@ -108,7 +147,7 @@
     }
 
     .btn:hover {
-      background: var(--color-primary);
+      background: var(--color-accent);
     }
 
     section {
@@ -278,7 +317,7 @@
 <body>
   <header>
     <a href="#" class="logo">
-      <img src="./Alumni-Network-Secondary-Portugal.png" alt="Oxford University Society Portugal Logo">
+      <img src="./Alumni-Network-Primary-Portugal.png" alt="Oxford University Society Portugal Logo">
     </a>
     <button class="menu-toggle" onclick="toggleNav()" aria-label="Toggle navigation">☰</button>
     <nav id="nav">
@@ -287,14 +326,17 @@
       <a href="#past">Past Events</a>
       <a href="#committee">Committee</a>
       <a href="#contact-form">Contact</a>
-      <a href="#conduct">Code of Conduct</a>
+      <a href="#legal-notice">Legal Notice</a>
     </nav>
   </header>
 
   <section class="hero" id="welcome">
-    <h1>Oxford University Society Portugal</h1>
-    <p>Connecting Oxford alumni across Portugal to share ideas and build community.</p>
-    <a href="#contact-form" class="btn">Get in Touch</a>
+    <img class="hero-bg" src="./OUImages_102125_HighRes.jpg" alt="Oxford University Society Portugal">
+    <div class="hero-inner">
+      <h1>Oxford University Society Portugal</h1>
+      <p>Connecting Oxford alumni across Portugal to share ideas and build community.</p>
+      <a href="#contact-form" class="btn">Get in Touch</a>
+    </div>
   </section>
 
   <section id="about">
@@ -396,11 +438,13 @@
     </form>
   </section>
 
-  <section id="conduct">
-    <h2 class="section-title">Code of Conduct</h2>
+  <section id="legal-notice">
+    <h2 class="section-title">Legal Notice</h2>
     <p class="text-block">
-      We are committed to a respectful and inclusive environment. Harassment or discrimination will not be tolerated.
-      Please contact the committee with any concerns.
+      Oxford University Society of Portugal is an autonomous group for alumni of the University living in Portugal and
+      operates independently of the University. Responsibility for this website and any and all activities associated
+      with it are the full responsibility of the group and its organising committee. This website is not maintained,
+      monitored, or in any way under the control of the University of Oxford.
     </p>
   </section>
 
