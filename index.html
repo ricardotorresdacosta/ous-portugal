@@ -233,9 +233,8 @@
 
     .card img {
       width: 100%;
-      height: auto; /* preserve image aspect ratio to avoid upscaling */
-      max-height: 220px; /* limit maximum displayed height */
-      object-fit: cover;
+      height: 220px; /* fixed height so all cards are the same size */
+      object-fit: cover; /* crop to fill the box consistently */
       border-radius: 4px;
       margin-bottom: 1rem;
     }
