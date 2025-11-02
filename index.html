@@ -561,9 +561,12 @@
 
       // Primary click handler
       btn.addEventListener('click', toggleNav);
-      // Also handle pointer/touch events for devices where click may be delayed
-      btn.addEventListener('pointerdown', (e) => { try { e.preventDefault(); toggleNav(); } catch (err) { console.error(err); } });
-      btn.addEventListener('touchstart', (e) => { try { e.preventDefault(); toggleNav(); } catch (err) { console.error(err); } }, { passive: false });
+      console.log('menu-toggle listener attached');
+
+      // Add non-blocking pointer/touch handlers that do not call preventDefault.
+      // These improve responsiveness on some devices but avoid the cancelable=false intervention.
+      btn.addEventListener('pointerup', (e) => { try { toggleNav(); console.log('menu-toggle pointerup'); } catch (err) { console.error(err); } });
+      btn.addEventListener('touchend', (e) => { try { toggleNav(); console.log('menu-toggle touchend'); } catch (err) { console.error(err); } }, { passive: true });
 
       // Close menu when clicking outside the nav on mobile
       document.addEventListener('click', (e) => {
