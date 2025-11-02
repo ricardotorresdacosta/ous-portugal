@@ -335,6 +335,44 @@
         display: block;
       }
     }
+
+    /* Mobile hero adjustments: allow the hero to expand if content needs more space,
+       reduce padding and font sizes to avoid overflow, and hide overflow to prevent
+       text escaping the hero area. */
+    @media (max-width: 600px) {
+      .hero {
+        aspect-ratio: auto; /* let the hero grow vertically when needed */
+        min-height: 320px; /* keep a reasonable minimum */
+        overflow: hidden; /* prevent content from spilling out */
+      }
+
+      .hero-inner {
+        padding: 1rem; /* reduce internal padding */
+        align-items: flex-start; /* left-align for narrow viewports */
+        justify-content: center; /* keep content vertically centered if possible */
+        text-align: left;
+      }
+
+      .hero h1 {
+        font-size: 1.4rem;
+        line-height: 1.15;
+      }
+
+      .hero p {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.95rem;
+      }
+
+      /* ensure the hero image focuses on the center and doesn't shift unexpectedly */
+      .hero-bg {
+        object-position: center center;
+      }
+    }
   </style>
 </head>
 
