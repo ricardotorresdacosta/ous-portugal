@@ -444,7 +444,7 @@
   </section>
 
   <footer>
-    &copy; 2025 Oxford University Society Portugal
+    &copy; <span id="year"></span> Oxford University Society Portugal
   </footer>
 
   <script>
@@ -491,6 +491,10 @@
         formError.style.display = 'block';
       }
     });
+
+    // set dynamic year in the footer
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
   </script>
 </body>
 
