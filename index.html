@@ -16,7 +16,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Preload the hero image (webp preferred) using the same webp srcset served in the picture element -->
-  <link rel="preload" as="image" imagesrcset="./OUImages_102125_480.webp 480w, ./OUImages_102125_800.webp 800w, ./OUImages_102125_1200.webp 1200w, ./OUImages_102125_1920.webp 1920w, ./OUImages_102125_2560.webp 2560w" imagesizes="100vw">
+  <link rel="preload" as="image"
+    imagesrcset="./OUImages_102125_480.webp 480w, ./OUImages_102125_800.webp 800w, ./OUImages_102125_1200.webp 1200w, ./OUImages_102125_1920.webp 1920w, ./OUImages_102125_2560.webp 2560w"
+    imagesizes="100vw">
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap"
     rel="stylesheet">
@@ -42,8 +44,10 @@
     }
 
     header {
-      position: relative; /* ensure z-index applies */
-      z-index: 60; /* keep header and controls above other content */
+      position: relative;
+      /* ensure z-index applies */
+      z-index: 60;
+      /* keep header and controls above other content */
       background: #fff;
       display: flex;
       align-items: center;
@@ -96,7 +100,8 @@
       margin-left: calc(50% - 50vw);
       margin-right: calc(50% - 50vw);
       overflow: visible;
-      aspect-ratio: 3 / 1; /* ensure the container keeps a stable ratio */
+      aspect-ratio: 3 / 1;
+      /* ensure the container keeps a stable ratio */
     }
 
     /* The actual image element so the full image is visible (no cropping)
@@ -107,7 +112,8 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover; /* prevent stretching, crop if necessary */
+      object-fit: cover;
+      /* prevent stretching, crop if necessary */
       display: block;
     }
 
@@ -323,15 +329,18 @@
     @media (max-width: 768px) {
       nav {
         display: none;
-        position: fixed; /* keep the menu on top when opened */
-        top: 56px; /* just below the header (approx) */
+        position: fixed;
+        /* keep the menu on top when opened */
+        top: 56px;
+        /* just below the header (approx) */
         left: 0;
         right: 0;
         background: #fff;
         flex-direction: column;
         max-height: calc(100vh - 56px);
         overflow: auto;
-        z-index: 65; /* above page content */
+        z-index: 65;
+        /* above page content */
       }
 
       nav.active {
@@ -340,7 +349,8 @@
 
       .menu-toggle {
         display: block;
-        position: fixed; /* ensure always reachable */
+        position: fixed;
+        /* ensure always reachable */
         top: 12px;
         right: 16px;
         z-index: 9999;
@@ -352,16 +362,23 @@
        text escaping the hero area. */
     @media (max-width: 600px) {
       .hero {
-        aspect-ratio: auto; /* let the hero grow vertically when needed */
-        min-height: 320px; /* keep a reasonable minimum */
-        overflow: hidden; /* prevent content from spilling out */
+        aspect-ratio: auto;
+        /* let the hero grow vertically when needed */
+        min-height: 320px;
+        /* keep a reasonable minimum */
+        overflow: hidden;
+        /* prevent content from spilling out */
       }
 
       .hero-inner {
-        padding: 1rem; /* reduce internal padding */
-        align-items: center; /* center content horizontally like desktop */
-        justify-content: center; /* keep content vertically centered if possible */
-        text-align: center; /* center text so heading/btn are centered */
+        padding: 1rem;
+        /* reduce internal padding */
+        align-items: center;
+        /* center content horizontally like desktop */
+        justify-content: center;
+        /* keep content vertically centered if possible */
+        text-align: center;
+        /* center text so heading/btn are centered */
       }
 
       .hero h1 {
@@ -383,6 +400,24 @@
       .hero-bg {
         object-position: center center;
       }
+    }
+
+    /* Social media icons */
+    .social-links {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+
+    .social-links a img {
+      width: 28px;
+      height: 28px;
+      transition: opacity 0.2s ease;
+    }
+
+    .social-links a img:hover {
+      opacity: 0.7;
     }
   </style>
 </head>
@@ -406,16 +441,15 @@
   <section class="hero" id="welcome">
     <picture>
       <source type="image/webp"
-              srcset="./OUImages_102125_480.webp 480w, ./OUImages_102125_800.webp 800w, ./OUImages_102125_1200.webp 1200w, ./OUImages_102125_1920.webp 1920w, ./OUImages_102125_2560.webp 2560w"
-              sizes="100vw">
+        srcset="./OUImages_102125_480.webp 480w, ./OUImages_102125_800.webp 800w, ./OUImages_102125_1200.webp 1200w, ./OUImages_102125_1920.webp 1920w, ./OUImages_102125_2560.webp 2560w"
+        sizes="100vw">
       <source type="image/jpeg"
-              srcset="./OUImages_102125_480.jpg 480w, ./OUImages_102125_800.jpg 800w, ./OUImages_102125_1200.jpg 1200w, ./OUImages_102125_1920.jpg 1920w, ./OUImages_102125_2560.jpg 2560w"
-              sizes="100vw">
+        srcset="./OUImages_102125_480.jpg 480w, ./OUImages_102125_800.jpg 800w, ./OUImages_102125_1200.jpg 1200w, ./OUImages_102125_1920.jpg 1920w, ./OUImages_102125_2560.jpg 2560w"
+        sizes="100vw">
       <!-- Very small blurred inline placeholder as initial src (LQIP) -->
       <img class="hero-bg blur"
-           src="data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAAAwBACdASoUAA0APpE4mEeloyKhMAgAsBIJZACdMoADTpA+pViFEzOmXwAA99OfIn+6ErUmGapKXS/AnDVlxvOOGt3IgdBCgNYo4dizJE0NgQYQMD4eLiFt2mGYI6+z5envkQAA"
-           alt="Oxford University Society Portugal"
-           width="1920" height="640" loading="eager">
+        src="data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAAAwBACdASoUAA0APpE4mEeloyKhMAgAsBIJZACdMoADTpA+pViFEzOmXwAA99OfIn+6ErUmGapKXS/AnDVlxvOOGt3IgdBCgNYo4dizJE0NgQYQMD4eLiFt2mGYI6+z5envkQAA"
+        alt="Oxford University Society Portugal" width="1920" height="640" loading="eager">
     </picture>
     <div class="hero-inner">
       <h1>Oxford University Society Portugal</h1>
@@ -540,6 +574,18 @@
 
   <footer>
     &copy; <span id="year"></span> Oxford University Society Portugal
+
+    <div class="social-links">
+      <a href="https://www.linkedin.com/groups/16039005/" target="_blank" rel="noopener">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linkedin.svg" alt="LinkedIn">
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61583620662433" target="_blank" rel="noopener">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/facebook.svg" alt="Facebook">
+      </a>
+      <a href="https://www.instagram.com/oxonian_2025?igsh=MWxoN2w1aGIxeG5tdw%3D%3D" target="_blank" rel="noopener">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" alt="Instagram">
+      </a>
+    </div>
   </footer>
 
   <script>
@@ -599,7 +645,7 @@
         heroImg.addEventListener('load', () => {
           // attempt decode for smoother swap; ignore failures
           if (heroImg.decode) {
-            heroImg.decode().catch(() => {}).finally(markLoaded);
+            heroImg.decode().catch(() => { }).finally(markLoaded);
           } else {
             markLoaded();
           }
