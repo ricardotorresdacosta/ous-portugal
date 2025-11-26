@@ -287,7 +287,7 @@
       font-size: 0.95rem;
     }
 
-    /* === CONTACT FORM === */
+    /* === BECOME A MEMBER FORM === */
     form {
       display: grid;
       gap: 1rem;
@@ -439,7 +439,7 @@
       <a href="#upcoming">Upcoming Events</a>
       <a href="#past">Past Events</a>
       <a href="#committee">Committee</a>
-      <a href="#contact-form">Contact</a>
+      <a href="#become-member">Become a Member</a>
       <a href="#legal-notice">Legal Notice</a>
     </nav>
   </header>
@@ -460,7 +460,7 @@
     <div class="hero-inner">
       <h1>Oxford University Society Portugal</h1>
       <p>Connecting Oxford alumni across Portugal to share ideas and build community.</p>
-      <a href="#contact-form" class="btn">Get in Touch</a>
+      <a href="#become-member" class="btn">Become a Member</a>
     </div>
   </section>
 
@@ -585,16 +585,17 @@
     </div>
   </section>
 
-  <section id="contact-form">
-    <h2 class="section-title">Contact Us</h2>
-    <form id="contact-us-form" action="https://formspree.io/f/xpwykapz" method="POST" novalidate>
+  <section id="become-member">
+    <h2 class="section-title">Become a Member</h2>
+    <form id="become-member-form" action="https://formspree.io/f/xpwykapz" method="POST" novalidate>
       <input type="text" name="name" placeholder="Your name">
+      <input type="text" name="college" placeholder="Your college">
+      <input type="text" name="matriculation_date" placeholder="Matriculation date (e.g. 10/2018)">
       <input type="email" name="email" id="email" placeholder="Your email address" required
         pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
         title="Please enter a valid email address (e.g. name@example.com)">
       <input type="tel" name="phone" placeholder="Your phone number (optional)">
-      <textarea name="message" rows="4" placeholder="Your message"></textarea>
-      <input type="submit" value="Send Message">
+      <input type="submit" value="Submit Request">
       <p id="email-error" style="color:red; text-align:center; display:none; font-size:0.9rem;">
         Please enter a valid email address.
       </p>
