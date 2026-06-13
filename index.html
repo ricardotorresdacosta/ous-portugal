@@ -15,14 +15,9 @@
   <meta name="twitter:title" content="Oxford University Alumni Society Portugal">
   <meta name="twitter:description" content="Connect with Oxford alumni in Portugal - Networking events and community">
   <link rel="sitemap" type="application/xml" href="https://oxfordportugal.org/sitemap.xml">
-  <link rel="icon"
-    href="https://www.oxfordsociety.de/wp-content/uploads/2021/02/OxfordAlumniSqSocialMediaBadge-150x150.jpg"
-    sizes="32x32" />
-  <link rel="icon"
-    href="https://www.oxfordsociety.de/wp-content/uploads/2021/02/OxfordAlumniSqSocialMediaBadge-300x300.jpg"
-    sizes="192x192" />
-  <link rel="apple-touch-icon"
-    href="https://www.oxfordsociety.de/wp-content/uploads/2021/02/OxfordAlumniSqSocialMediaBadge-300x300.jpg" />
+  <link rel="icon" type="image/png" href="./favicon-32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="./favicon-512.png" sizes="512x512" />
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Preload the hero image (webp preferred) using the same webp srcset served in the picture element -->
@@ -190,6 +185,21 @@
 
     .btn:hover {
       background: var(--color-accent);
+      color: var(--color-primary);
+      /* navy text on light-blue keeps WCAG AA contrast on hover */
+    }
+
+    /* visually-hidden but available to screen readers */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     section {
@@ -602,7 +612,7 @@
     <div class="card-grid">
 
       <div class="card">
-        <img src="./st_antonys_college.jpg" alt="St Antony's 75th Anniversary">
+        <img src="./st_antonys_college.jpg" alt="St Antony's 75th Anniversary" loading="lazy" decoding="async">
         <h3>St. Antony's 75th Anniversary</h3>
         <h4>Lisbon</h4>
         <p>
@@ -610,7 +620,7 @@
           <strong>Time: </strong>6.30 – 8.00 PM<br>
           <strong>Address: </strong>Library Building, 2nd Floor, Palma de Cima, 1649-023 Lisboa<br>
           <strong>Date: </strong>Saturday 20th June, 2026<br>
-          <strong>Entrance Fee: </strong>5 EUR<br>
+          <strong>Entrance: </strong>5 EUR<br>
           <strong>Registration: </strong>Please contact João Espada, St. Antony's Liaison Officer in Portugal, on email <a href="mailto:espadajc@gmail.com">espadajc@gmail.com</a> for further details.<br>
         </p>
       </div>
@@ -623,7 +633,7 @@
     <div class="card-grid">
 
       <div class="card">
-        <img src="./Gremio.jpg" alt="The Grémio Literário Dinner">
+        <img src="./Gremio.jpg" alt="The Grémio Literário Dinner" loading="lazy" decoding="async">
         <h3>The Grémio Literário Dinner</h3>
         <h4>Lisbon</h4>
         <p>
@@ -635,7 +645,7 @@
       </div>
 
       <div class="card">
-        <img src="./daniel-sessler-g3O3xWspoN4-unsplash.jpg" alt="Winter Dinner">
+        <img src="./daniel-sessler-g3O3xWspoN4-unsplash.jpg" alt="Winter Dinner" loading="lazy" decoding="async">
         <h3>Winter Dinner</h3>
         <h4>Porto</h4>
         <p>
@@ -647,7 +657,7 @@
       </div>
 
       <div class="card">
-        <img src="./andreas-brucker-X87yB-jvYHw-unsplash.jpg" alt="Christmas Party">
+        <img src="./andreas-brucker-X87yB-jvYHw-unsplash.jpg" alt="Christmas Party" loading="lazy" decoding="async">
         <h3>Christmas Drinks</h3>
         <h4>Lisbon</h4>
         <p>
@@ -659,7 +669,7 @@
       </div>
 
       <div class="card">
-        <img src="./aayush-gupta-ljhCEaHYWJ8-unsplash.jpg" alt="Altis Belém — photo by Aayush Gupta on Unsplash">
+        <img src="./aayush-gupta-ljhCEaHYWJ8-unsplash.jpg" alt="Altis Belém — photo by Aayush Gupta on Unsplash" loading="lazy" decoding="async">
         <h3>OUS Portugal Informal Drinks</h3>
         <h4>Lisbon</h4>
         <p>
@@ -670,7 +680,7 @@
 
       <div class="card">
         <img src="./svetlana-gumerova-gOLCAOuc7iA-unsplash.jpg"
-          alt="Altis Belém — photo by Svetlana Gumerova on Unsplash">
+          alt="Altis Belém — photo by Svetlana Gumerova on Unsplash" loading="lazy" decoding="async">
         <h3>OUS Portugal Informal Drinks</h3>
         <h4>Lisbon</h4>
         <p>
@@ -687,22 +697,22 @@
     <h2 class="section-title">Executive Committee</h2>
     <div class="card-grid">
       <div class="card">
-        <img src="./joao.jpeg" alt="Joao Espada">
+        <img src="./joao.jpeg" alt="Joao Espada" loading="lazy" decoding="async">
         <h3>João Carlos Espada</h3>
         <p>St Antony’s College</p>
       </div>
       <div class="card">
-        <img src="./laurence.jpeg" alt="Laurence Brown">
+        <img src="./laurence.jpeg" alt="Laurence Brown" loading="lazy" decoding="async">
         <h3>Laurence Brown</h3>
         <p>St John’s College</p>
       </div>
       <div class="card">
-        <img src="./tj.enc" alt="Tejaswini Suryakantingole">
+        <img src="./tj.jpg" alt="Tejaswini Suryakantingole" loading="lazy" decoding="async">
         <h3>Tejaswini Ingole</h3>
         <p>SBS | Pembroke College</p>
       </div>
       <div class="card">
-        <img src="./ricardo.jpeg" alt="Ricardo Torres da Costa">
+        <img src="./ricardo.jpeg" alt="Ricardo Torres da Costa" loading="lazy" decoding="async">
         <h3>Ricardo Torres da Costa</h3>
         <p>St Cross College</p>
       </div>
@@ -712,13 +722,18 @@
   <section id="become-member">
     <h2 class="section-title">Become a Member</h2>
     <form id="become-member-form" action="https://formspree.io/f/xpwykapz" method="POST" novalidate>
-      <input type="text" name="name" placeholder="Your name" required>
-      <input type="text" name="college" placeholder="Your college" required>
-      <input type="text" name="matriculation_date" placeholder="Matriculation date (e.g. 10/2018)" required>
+      <label class="sr-only" for="f-name">Your name</label>
+      <input type="text" name="name" id="f-name" placeholder="Your name" required>
+      <label class="sr-only" for="f-college">Your college</label>
+      <input type="text" name="college" id="f-college" placeholder="Your college" required>
+      <label class="sr-only" for="f-matriculation">Matriculation date (e.g. 10/2018)</label>
+      <input type="text" name="matriculation_date" id="f-matriculation" placeholder="Matriculation date (e.g. 10/2018)" required>
+      <label class="sr-only" for="email">Your email address</label>
       <input type="email" name="email" id="email" placeholder="Your email address" required
         pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
         title="Please enter a valid email address (e.g. name@example.com)">
-      <input type="tel" name="phone" placeholder="Your phone number (optional)">
+      <label class="sr-only" for="f-phone">Your phone number (optional)</label>
+      <input type="tel" name="phone" id="f-phone" placeholder="Your phone number (optional)">
       <input type="submit" value="Submit Request">
       <p id="email-error" style="color:red; text-align:center; display:none; font-size:0.9rem;">
         Please enter a valid email address.
@@ -737,6 +752,7 @@
   </section>
 
   <section id="legal-notice">
+    <h2 class="section-title">Legal Notice</h2>
     <p class="text-block">
       Oxford University Society of Portugal is an autonomous group for alumni of the University living in Portugal and
       operates independently of the University. Responsibility for this website and any and all activities associated
@@ -750,13 +766,13 @@
 
     <div class="social-links">
       <a href="https://www.linkedin.com/groups/16039005/" target="_blank" rel="noopener">
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linkedin.svg" alt="LinkedIn">
+        <img src="./icon-linkedin.svg" alt="LinkedIn" width="28" height="28" loading="lazy">
       </a>
       <a href="https://www.facebook.com/profile.php?id=61583620662433" target="_blank" rel="noopener">
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/facebook.svg" alt="Facebook">
+        <img src="./icon-facebook.svg" alt="Facebook" width="28" height="28" loading="lazy">
       </a>
       <a href="https://www.instagram.com/oxford_society_of_portugal/" target="_blank" rel="noopener">
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" alt="Instagram">
+        <img src="./icon-instagram.svg" alt="Instagram" width="28" height="28" loading="lazy">
       </a>
     </div>
   </footer>

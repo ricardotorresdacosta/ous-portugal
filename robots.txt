@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /tj.enc
 
 Sitemap: https://oxfordportugal.org/sitemap.xml
