@@ -30,11 +30,24 @@
   <style>
     :root {
       --color-primary: #002147;
+      --color-primary-dark: #001733;
       --color-secondary: #f4f4f4;
       --color-accent: #B3CDE0;
+      --color-bg: #fbfcfe;
+      --color-surface: #ffffff;
+      --color-ink: #1c2530;
+      --color-muted: #5b6675;
+      --color-border: #e6e9ef;
       --font-heading: 'Playfair Display', serif;
       --font-body: 'Montserrat', sans-serif;
-      --gap: 1.5rem;
+      --gap: 1.75rem;
+      --maxw: 1080px;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --shadow-sm: 0 1px 2px rgba(0, 33, 71, .06), 0 2px 8px rgba(0, 33, 71, .05);
+      --shadow-md: 0 6px 18px rgba(0, 33, 71, .08), 0 2px 6px rgba(0, 33, 71, .06);
+      --shadow-lg: 0 18px 40px rgba(0, 33, 71, .16);
+      --transition: .25s cubic-bezier(.4, 0, .2, 1);
     }
 
     * {
@@ -43,27 +56,37 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: var(--font-body);
-      color: #333;
+      color: var(--color-ink);
+      background: var(--color-bg);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
     header {
-      position: relative;
-      /* ensure z-index applies */
+      position: sticky;
+      top: 0;
       z-index: 60;
-      /* keep header and controls above other content */
-      background: #fff;
+      background: rgba(255, 255, 255, .82);
+      backdrop-filter: saturate(180%) blur(14px);
+      -webkit-backdrop-filter: saturate(180%) blur(14px);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1rem 2rem;
-      border-bottom: 1px solid var(--color-secondary);
+      padding: .7rem 2rem;
+      border-bottom: 1px solid var(--color-border);
     }
 
     .logo img {
-      max-width: 140px;
-      height: auto;
+      height: 52px;
+      width: auto;
+      max-width: 70vw;
       display: block;
     }
 
@@ -74,13 +97,29 @@
     }
 
     nav a {
+      position: relative;
       text-decoration: none;
-      color: #555;
+      color: var(--color-primary);
       font-weight: 600;
+      font-size: .95rem;
+      padding: .25rem 0;
     }
 
-    nav a:hover {
-      color: var(--color-primary);
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 2px;
+      background: var(--color-primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+    }
+
+    nav a:hover::after {
+      transform: scaleX(1);
     }
 
     .menu-toggle {
@@ -140,7 +179,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35));
+      background: linear-gradient(180deg, rgba(0, 18, 40, .30) 0%, rgba(0, 18, 40, .58) 100%);
       z-index: 1;
       pointer-events: none;
     }
@@ -165,28 +204,39 @@
 
     .hero h1 {
       font-family: var(--font-heading);
-      font-size: 2.5rem;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.1;
+      letter-spacing: .5px;
       margin-bottom: 1rem;
+      text-shadow: 0 2px 18px rgba(0, 0, 0, .35);
     }
 
     .hero p {
-      font-size: 1.25rem;
-      margin-bottom: 2rem;
+      font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+      max-width: 620px;
+      margin: 0 auto 2rem;
+      text-shadow: 0 1px 10px rgba(0, 0, 0, .3);
     }
 
     .btn {
+      display: inline-block;
       background: var(--color-primary);
       color: #fff;
-      padding: 0.75rem 1.5rem;
+      padding: .85rem 1.9rem;
       text-decoration: none;
       font-weight: 600;
-      border-radius: 4px;
+      letter-spacing: .3px;
+      border-radius: 999px;
+      box-shadow: var(--shadow-md);
+      transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
     }
 
     .btn:hover {
+      /* navy text on light-blue keeps WCAG AA contrast on hover */
       background: var(--color-accent);
       color: var(--color-primary);
-      /* navy text on light-blue keeps WCAG AA contrast on hover */
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
     }
 
     /* visually-hidden but available to screen readers */
@@ -203,26 +253,39 @@
     }
 
     section {
-      padding: 3rem 2rem;
-      max-width: 1000px;
+      padding: clamp(3rem, 6vw, 5rem) 1.5rem;
+      max-width: var(--maxw);
       margin: auto;
-      scroll-margin-top: 100px;
+      scroll-margin-top: 90px;
     }
 
     .section-title {
       font-family: var(--font-heading);
-      font-size: 2rem;
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
       color: var(--color-primary);
+      letter-spacing: .3px;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 64px;
+      height: 3px;
+      margin: .9rem auto 0;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
     }
 
     /* === TEXT BLOCK STYLE (Welcome + About) === */
     .text-block {
-      max-width: 800px;
+      max-width: 760px;
       margin: auto;
-      text-align: justify;
-      line-height: 1.6;
+      text-align: left;
+      line-height: 1.75;
+      color: #3a4654;
+      font-size: 1.02rem;
     }
 
     /* === EVENT GRIDS === */
@@ -275,11 +338,13 @@
     }
 
     .card {
-      background: #fff;
-      border: 1px solid var(--color-secondary);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
       padding: 1.5rem;
-      border-radius: 6px;
-      transition: transform .2s;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
       text-align: center;
     }
 
@@ -289,18 +354,35 @@
       /* fixed height so all cards are the same size */
       object-fit: cover;
       /* crop to fill the box consistently */
-      border-radius: 4px;
-      margin-bottom: 1rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: 1.1rem;
+      transition: transform var(--transition);
     }
 
     .card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card:hover img {
+      transform: scale(1.04);
     }
 
     .card h3 {
       font-family: var(--font-heading);
-      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+      margin-bottom: 0.4rem;
       color: var(--color-primary);
+    }
+
+    .card h4 {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--color-muted);
+      margin-bottom: .85rem;
     }
 
     .card p {
@@ -317,33 +399,55 @@
 
     input,
     textarea {
-      padding: 0.75rem;
+      padding: .85rem 1rem;
       width: 100%;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
       font-family: var(--font-body);
+      font-size: 1rem;
+      background: #fff;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(0, 33, 71, .12);
     }
 
     input[type="submit"] {
       background: var(--color-primary);
       color: #fff;
       border: none;
-      padding: 0.75rem;
-      border-radius: 4px;
+      padding: .9rem;
+      border-radius: 999px;
       font-weight: 600;
+      letter-spacing: .3px;
       cursor: pointer;
+      box-shadow: var(--shadow-md);
+      transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
     }
 
     input[type="submit"]:hover {
-      background: #001933;
+      background: var(--color-primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    input[type="submit"]:disabled {
+      opacity: .7;
+      cursor: default;
+      transform: none;
+      box-shadow: none;
     }
 
     footer {
-      background: var(--color-secondary);
+      background: var(--color-primary);
       text-align: center;
-      padding: 2rem;
+      padding: 2.5rem 2rem;
       font-size: 0.9rem;
-      color: #555;
+      color: rgba(255, 255, 255, .75);
     }
 
     @media (max-width: 768px) {
@@ -351,16 +455,29 @@
         display: none;
         position: fixed;
         /* keep the menu on top when opened */
-        top: 56px;
+        top: 66px;
         /* just below the header (approx) */
         left: 0;
         right: 0;
         background: #fff;
         flex-direction: column;
-        max-height: calc(100vh - 56px);
+        gap: 0;
+        padding: .5rem 0;
+        max-height: calc(100vh - 66px);
         overflow: auto;
         z-index: 65;
+        box-shadow: var(--shadow-md);
+        border-bottom: 1px solid var(--color-border);
         /* above page content */
+      }
+
+      nav a {
+        padding: .9rem 1.5rem;
+        border-bottom: 1px solid var(--color-secondary);
+      }
+
+      nav a::after {
+        display: none;
       }
 
       nav.active {
@@ -424,26 +541,49 @@
 
     /* Social media icons */
     .social-links {
-      margin-top: 1rem;
+      margin-top: 1.25rem;
       display: flex;
       justify-content: center;
-      gap: 1.2rem;
+      gap: 1.25rem;
     }
 
     .social-links a img {
-      width: 28px;
-      height: 28px;
-      transition: opacity 0.2s ease;
+      width: 26px;
+      height: 26px;
+      filter: invert(1);
+      opacity: .8;
+      transition: opacity var(--transition), transform var(--transition);
     }
 
     .social-links a img:hover {
-      opacity: 0.7;
+      opacity: 1;
+      transform: translateY(-3px);
     }
 
     .card p {
       text-align: left;
       padding-left: 8px;
       /* optional indent */
+    }
+
+    /* Scroll-reveal: only active when JS adds .js-reveal and motion is allowed.
+       Without JS (or with reduced-motion) everything stays fully visible. */
+    @media (prefers-reduced-motion: no-preference) {
+
+      .js-reveal .section-title,
+      .js-reveal .text-block,
+      .js-reveal .card {
+        opacity: 0;
+        transform: translateY(22px);
+        transition: opacity .6s ease, transform .6s ease;
+      }
+
+      .js-reveal .section-title.in,
+      .js-reveal .text-block.in,
+      .js-reveal .card.in {
+        opacity: 1;
+        transform: none;
+      }
     }
   </style>
   <script type="application/ld+json">
@@ -625,7 +765,7 @@
 <body>
   <header>
     <a href="#" class="logo">
-      <img src="./Alumni-Network-Primary-Portugal.png" alt="Oxford University Society Portugal Logo">
+      <img src="./Alumni-Network-Secondary-Portugal.png" alt="Oxford University Society Portugal Logo" width="155" height="56">
     </a>
     <button class="menu-toggle" aria-label="Toggle navigation" aria-controls="nav" aria-expanded="false">☰</button>
     <nav id="nav">
@@ -918,6 +1058,24 @@
     // set dynamic year in the footer
     const yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // Subtle scroll-reveal. Opt-in via the .js-reveal class so the page stays
+    // fully visible when JS is unavailable or the user prefers reduced motion.
+    (function () {
+      if (!('IntersectionObserver' in window)) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      document.documentElement.classList.add('js-reveal');
+      const els = document.querySelectorAll('.section-title, .text-block, .card');
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      els.forEach((el) => io.observe(el));
+    })();
 
     // AJAX membership form: submit to Formspree without leaving the page,
     // and surface the inline success / error / validation messages.
