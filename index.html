@@ -4,15 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Oxford University Alumni Society Portugal</title>
+  <title>Oxford University Society Portugal — Oxford Alumni Network</title>
   <meta name="description" content="Oxford University Society Portugal - Connect with Oxford alumni in Portugal. Join our community for networking events, monthly gatherings in Lisbon and Porto, and exclusive alumni experiences.">
   <link rel="canonical" href="https://oxfordportugal.org">
-  <meta property="og:title" content="Oxford University Alumni Society Portugal">
+  <meta property="og:title" content="Oxford University Society Portugal">
   <meta property="og:description" content="Official alumni network for University of Oxford graduates in Portugal. Networking events, community connections, and alumni gatherings.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://oxfordportugal.org">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Oxford University Alumni Society Portugal">
+  <meta name="twitter:title" content="Oxford University Society Portugal">
   <meta name="twitter:description" content="Connect with Oxford alumni in Portugal - Networking events and community">
   <link rel="sitemap" type="application/xml" href="https://oxfordportugal.org/sitemap.xml">
   <link rel="icon" type="image/jpeg" href="./favicon-150.jpg" sizes="32x32" />
@@ -544,6 +544,79 @@
         "name": "Oxford University Society Portugal",
         "url": "https://oxfordportugal.org"
       }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "Christmas Drinks",
+      "description": "Oxford Society of Portugal Christmas drinks in Lisbon",
+      "url": "https://oxfordportugal.org/#past",
+      "startDate": "2025-12-12T19:00:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Pavilhão Chinês",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "R. Dom Pedro V 89",
+          "addressLocality": "Lisboa",
+          "addressCountry": "PT"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Oxford University Society Portugal",
+        "url": "https://oxfordportugal.org"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "OUS Portugal Informal Drinks",
+      "description": "Oxford Society of Portugal informal drinks in Lisbon",
+      "url": "https://oxfordportugal.org/#past",
+      "startDate": "2025-05-09",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Altis Belém",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Lisboa",
+          "addressCountry": "PT"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Oxford University Society Portugal",
+        "url": "https://oxfordportugal.org"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "OUS Portugal Informal Drinks",
+      "description": "Oxford Society of Portugal informal drinks in Lisbon",
+      "url": "https://oxfordportugal.org/#past",
+      "startDate": "2024-11-15",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Altis Belém",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Lisboa",
+          "addressCountry": "PT"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Oxford University Society Portugal",
+        "url": "https://oxfordportugal.org"
+      }
     }
   ]
   </script>
@@ -845,6 +918,57 @@
     // set dynamic year in the footer
     const yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // AJAX membership form: submit to Formspree without leaving the page,
+    // and surface the inline success / error / validation messages.
+    (function () {
+      const form = document.getElementById('become-member-form');
+      if (!form) return;
+      const emailInput = document.getElementById('email');
+      const emailError = document.getElementById('email-error');
+      const successMsg = document.getElementById('form-success');
+      const errorMsg = document.getElementById('form-error');
+      const submitBtn = form.querySelector('input[type="submit"]');
+      const hide = (el) => { if (el) el.style.display = 'none'; };
+      const show = (el) => { if (el) el.style.display = 'block'; };
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        hide(emailError); hide(successMsg); hide(errorMsg);
+
+        // native validity covers required fields + the email pattern
+        if (!form.checkValidity()) {
+          if (emailInput && !emailInput.validity.valid) {
+            show(emailError);
+            emailInput.focus();
+          } else {
+            form.reportValidity();
+          }
+          return;
+        }
+
+        const originalValue = submitBtn ? submitBtn.value : '';
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.value = 'Sending…'; }
+
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            form.reset();
+            show(successMsg);
+          } else {
+            show(errorMsg);
+          }
+        } catch (err) {
+          show(errorMsg);
+        } finally {
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.value = originalValue; }
+        }
+      });
+    })();
   </script>
 </body>
 
