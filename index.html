@@ -239,6 +239,26 @@
       box-shadow: var(--shadow-lg);
     }
 
+    .section-actions {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    /* .btn was written for an <a>; strip the UA button chrome so a real
+       <button> matches it exactly. */
+    button.btn {
+      border: 0;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    /* .btn sets display:inline-block, an author rule that outranks the UA
+       [hidden] rule — without this the button renders even when hidden. */
+    .btn[hidden],
+    .card[hidden] {
+      display: none;
+    }
+
     /* visually-hidden but available to screen readers */
     .sr-only {
       position: absolute;
@@ -610,9 +630,35 @@
     {
       "@context": "https://schema.org",
       "@type": "Event",
+      "name": "The Boa Nova Dinner",
+      "description": "Oxford University Society Portugal autumn dinner at Casa de Chá da Boa Nova, Álvaro Siza's tea house on the Atlantic at Leça da Palmeira",
+      "url": "https://oxfordportugal.org/#upcoming",
+      "startDate": "2026-09-19T19:30:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Casa de Chá da Boa Nova",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Avenida da Liberdade",
+          "addressLocality": "Leça da Palmeira",
+          "postalCode": "4450-718",
+          "addressCountry": "PT"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Oxford University Society Portugal",
+        "url": "https://oxfordportugal.org"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
       "name": "St. Antony's 75th Anniversary",
       "description": "Celebrating St. Antony's College 75th Anniversary with Oxford Society of Portugal",
-      "url": "https://oxfordportugal.org/#upcoming",
+      "url": "https://oxfordportugal.org/#past",
       "startDate": "2026-06-20T18:30:00",
       "endDate": "2026-06-20T20:00:00",
       "eventStatus": "https://schema.org/EventScheduled",
@@ -825,6 +871,27 @@
     <div class="card-grid">
 
       <div class="card">
+        <img src="./casa-cha-boa-nova.jpg" alt="Casa de Chá da Boa Nova, Leça da Palmeira" loading="lazy" decoding="async">
+        <h3>The Boa Nova Dinner</h3>
+        <h4>Leça da Palmeira</h4>
+        <p>
+          <strong>Venue: </strong>Casa de Chá da Boa Nova<br>
+          <strong>Time: </strong>7.30 PM<br>
+          <strong>Address: </strong>Avenida da Liberdade, Leça da Palmeira, 4450-718 Matosinhos (TBC)<br>
+          <strong>Date: </strong>Saturday 19th September, 2026<br>
+          <strong>Entrance: </strong>TBC<br>
+          <strong>Registration: </strong>TBC — places are limited; booking details to follow.<br>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="past">
+    <h2 class="section-title">Past Events</h2>
+    <div class="card-grid">
+
+      <div class="card">
         <img src="./st_antonys_college.jpg" alt="St Antony's 75th Anniversary" loading="lazy" decoding="async">
         <h3>St. Antony's 75th Anniversary</h3>
         <h4>Lisbon</h4>
@@ -837,13 +904,6 @@
           <strong>Registration: </strong>Please contact João Espada, St. Antony's Liaison Officer in Portugal, on email <a href="mailto:espadajc@gmail.com">espadajc@gmail.com</a> for further details.<br>
         </p>
       </div>
-
-    </div>
-  </section>
-
-  <section id="past">
-    <h2 class="section-title">Past Events</h2>
-    <div class="card-grid">
 
       <div class="card">
         <img src="./Gremio.jpg" alt="The Grémio Literário Dinner" loading="lazy" decoding="async">
@@ -902,6 +962,9 @@
         </p>
       </div>
 
+    </div>
+    <div class="section-actions">
+      <button type="button" id="past-show-more" class="btn" hidden>Show more events</button>
     </div>
   </section>
 
@@ -1058,6 +1121,42 @@
     // set dynamic year in the footer
     const yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // Past events accumulate; show them a page at a time. The cards stay in the
+    // DOM — crawlers and no-JS visitors get the full list — and JS only hides
+    // the overflow. Runs before the scroll-reveal below so the observer never
+    // sees the hidden cards.
+    (function () {
+      const PAGE = 4;
+      const grid = document.querySelector('#past .card-grid');
+      const more = document.getElementById('past-show-more');
+      if (!grid || !more) return;
+
+      const cards = Array.from(grid.querySelectorAll('.card'));
+      if (cards.length <= PAGE) return;
+
+      let shown = PAGE;
+      const apply = () => {
+        cards.forEach((card, i) => { card.hidden = i >= shown; });
+        more.hidden = shown >= cards.length;
+      };
+      apply();
+
+      more.addEventListener('click', () => {
+        const firstNew = cards[shown];
+        shown = Math.min(shown + PAGE, cards.length);
+        apply();
+        // These cards were hidden when the reveal observer ran, so they never
+        // intersected and it will not fire for them. Mark them visible here.
+        requestAnimationFrame(() => {
+          cards.slice(0, shown).forEach((card) => card.classList.add('in'));
+          if (firstNew) {
+            firstNew.setAttribute('tabindex', '-1');
+            firstNew.focus();
+          }
+        });
+      });
+    })();
 
     // Subtle scroll-reveal. Opt-in via the .js-reveal class so the page stays
     // fully visible when JS is unavailable or the user prefers reduced motion.
