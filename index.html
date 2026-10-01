@@ -332,6 +332,13 @@
       }
     }
 
+    /* Shown in place of the grid when no event is scheduled. */
+    #upcoming .empty-note {
+      text-align: center;
+      color: #3a4654;
+      font-size: 1.02rem;
+    }
+
     /* === COMMITTEE GRID === */
     #committee .card-grid {
       display: grid;
@@ -632,7 +639,7 @@
       "@type": "Event",
       "name": "The Flor de Lis Dinner",
       "description": "Oxford University Society Portugal autumn dinner at Flor de Lis, in a 19th-century mansion overlooking the Atlantic at Foz do Douro, Porto",
-      "url": "https://oxfordportugal.org/#upcoming",
+      "url": "https://oxfordportugal.org/#past",
       "startDate": "2026-09-19T19:00:00",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
@@ -868,6 +875,11 @@
 
   <section id="upcoming">
     <h2 class="section-title">Upcoming Events</h2>
+    <p class="empty-note">Our next event will be announced here soon.</p>
+  </section>
+
+  <section id="past">
+    <h2 class="section-title">Past Events</h2>
     <div class="card-grid">
 
       <div class="card">
@@ -883,13 +895,6 @@
           <strong>Date: </strong>Saturday 19th September, 2026<br>
         </p>
       </div>
-
-    </div>
-  </section>
-
-  <section id="past">
-    <h2 class="section-title">Past Events</h2>
-    <div class="card-grid">
 
       <div class="card">
         <img src="./st_antonys_college.jpg" alt="St Antony's 75th Anniversary" loading="lazy" decoding="async">
